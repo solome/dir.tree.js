@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+cd `dirname $0`
+../node_modules/babel/bin/babel.js ../src/app.js --out-file ../app.js

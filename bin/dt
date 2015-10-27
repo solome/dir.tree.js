@@ -1,0 +1,35 @@
+#!/usr/bin/env node
+
+
+const program = require('commander');
+const DirTree = require('..');
+
+program
+    .version('0.0.1')
+    .option('-s, --showFile', 'Include files (not directory)')
+    .parse(process.argv);
+
+const root = process.cwd();
+const showFile = program.showFile ? true : false;
+
+
+console.log(root, showFile);
+
+const dt = DirTree(root, showFile);
+const SUB_PREFIX = ' |';
+const TAG = '____';
+const PREFIX = '|';
+
+const show = (root, dt, prefix) => {
+    if (dt.path == root) {
+        console.log('.');
+    } else {
+        console.log(`${prefix}${TAG}${dt.path.replace(`${root}/`, '')}`);
+        prefix = `${prefix}${SUB_PREFIX}`;
+    }
+    dt.sub.forEach(e => {
+        show(dt.path, e, prefix);
+    });
+}
+
+show(root, dt, PREFIX);
