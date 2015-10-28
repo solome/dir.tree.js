@@ -2,7 +2,7 @@ jest.dontMock('..');
 
 describe('DirTree', function() {
     it('Get tree obj of dir', function() {
-        const DirTree = require('..');
+        const DirTree = require('../build/app.js');
         const treeObj = DirTree(__dirname, true);
         expect(treeObj.path).toEqual(__dirname);
         expect(treeObj.sub[0].path).toEqual(__dirname + '/dir');
