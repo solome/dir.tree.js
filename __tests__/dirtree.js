@@ -1,4 +1,4 @@
-jest.dontMock('..');
+jest.dontMock('../build/app.js');
 
 describe('DirTree', function() {
     it('Get tree obj of dir', function() {
