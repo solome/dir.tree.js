@@ -2,6 +2,9 @@
 
 ## dir.tree
 
+[![Build Status](https://travis-ci.org/solome/dir.tree.js.svg)](https://travis-ci.org/solome/dir.tree.js)
+[![NPM Version](http://img.shields.io/npm/v/dir.tree.js.svg?style=flat)](https://www.npmjs.com/package/dir.tree.js)
+
 Get tree object with a directory, example:
 
 ```js
