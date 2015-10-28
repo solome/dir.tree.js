@@ -4,7 +4,7 @@
   "description": "Get tree object with a directory.",
   "main": "./build/app.js",
   "scripts": {
-    "test": "jest",
+    "test": "./node_modules/jest-cli/bin/jest.js",
     "build": "./scripts/build"
   },
   "files": [
