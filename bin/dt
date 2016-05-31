@@ -1,35 +1,37 @@
 #!/usr/bin/env node
 
 
-const program = require('commander');
-const DirTree = require('..');
+const program = require('commander')
+const DirTree = require('..').default
 
 program
     .version('0.0.1')
     .option('-s, --showFile', 'Include files (not directory)')
-    .parse(process.argv);
+    .parse(process.argv)
 
-const root = process.cwd();
-const showFile = program.showFile ? true : false;
+const root = process.cwd()
+const showFile = program.showFile ? true : false
+
+const dt = DirTree(root, showFile)
+
+const TAG = '──'
+const PREFIX = '├'
+const LAST_PREFIX = '└'
 
 
-console.log(root, showFile);
-
-const dt = DirTree(root, showFile);
-const SUB_PREFIX = ' |';
-const TAG = '____';
-const PREFIX = '|';
-
-const show = (root, dt, prefix) => {
-    if (dt.path == root) {
-        console.log('.');
+const show = (root, dt, _currPrefix, _nextPrefix) => {
+    const isRoot = dt.path === root
+    if (isRoot) {
+        console.log('.')
     } else {
-        console.log(`${prefix}${TAG}${dt.path.replace(`${root}/`, '')}`);
-        prefix = `${prefix}${SUB_PREFIX}`;
+        console.log(`${_currPrefix}${TAG} ${dt.path.replace(`${root}/`, '')}`)
     }
-    dt.sub.forEach(e => {
-        show(dt.path, e, prefix);
-    });
+    const len = dt.sub.length
+    dt.sub.forEach((item, index, arr) => {
+        const currPrefix = `${_nextPrefix}${index === len-1 ? LAST_PREFIX : PREFIX}`
+        const nextPrefix = `${_nextPrefix}${index === len-1 ? ' ' : '|'}   `
+        show(dt.path, item,  currPrefix, nextPrefix)
+    })
 }
 
-show(root, dt, PREFIX);
+show(root, dt, '', '')

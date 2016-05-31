@@ -30,11 +30,11 @@ npm install -g dir.tree.js
 Node
 
 ```js
-import DirTree from 'dir.tree.js';
+import DirTree from 'dir.tree.js'
 
-const path = __dirname;
+const path = __dirname
 
-const dirTree = DirTree(path);
+const dirTree = DirTree(path)
 
 ```
 
@@ -48,10 +48,10 @@ Output demo:
 
 ```bash
 .
-|____dir
-| |____subdir
-| | |____empty.file
-|____dirtree.js
+├── dir
+|   └── subdir
+|       └── empty.file
+└── dirtree.js
 
 ```
 
